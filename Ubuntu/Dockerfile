@@ -1,11 +1,24 @@
-FROM ubuntu:jammy-20240212
+# Koristi zvaničnu Ubuntu osnovnu sliku
+FROM ubuntu:latest
 
-RUN apt-get update && apt-get install -y \
-    ca-certificates \
-    bash \
-    && rm -rf /var/lib/apt/lists/*
-
+# Postavi radni direktorijum u kontejneru
 WORKDIR /app
 
-SHELL ["/bin/bash", "-c"]
+# Instaliraj Python i pip
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip && \
+    rm -rf /var/lib/apt/lists/*
+
+# Kopiraj izvorni kod aplikacije u kontejner
+COPY . /app
+
+# Instaliraj Python zavisnosti
+RUN pip3 install -r requirements.txt
+
+# Postavi port na kojem će aplikacija slušati
+EXPOSE 5000
+
+# Pokreni Flask aplikaciju
+CMD ["python3", "app.py"]
+
 
