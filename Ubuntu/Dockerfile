@@ -1,24 +1,21 @@
-# Koristi zvaničnu Ubuntu osnovnu sliku
-FROM ubuntu:latest
+# Koristi Python sličicu kao osnovnu sliku
+FROM python:3.8-slim
 
 # Postavi radni direktorijum u kontejneru
-WORKDIR /app
+WORKDIR /usr/src/app
 
-# Instaliraj Python i pip
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip && \
-    rm -rf /var/lib/apt/lists/*
+# Klone GitHub repozitorijum sa vašim kodom
+RUN apt-get update && apt-get install -y git
+RUN git clone https://github.com/Wiola09/webApp_jeftiniLetovi.git .
+RUN pwd > /output.txt
+RUN ls > /output1.txt
+COPY . /usr/src/app
 
-# Kopiraj izvorni kod aplikacije u kontejner
-COPY . /app
+# Instaliraj zavisnosti
+RUN pip install -r requirements.txt
 
-# Instaliraj Python zavisnosti
-RUN pip3 install -r requirements.txt
+# Izloži port na kojem će aplikacija slušati
+EXPOSE 8000
 
-# Postavi port na kojem će aplikacija slušati
-EXPOSE 5000
-
-# Pokreni Flask aplikaciju
-CMD ["python3", "app.py"]
-
-
+# Pokreni Gunicorn server
+CMD ["gunicorn", "main:app", "--bind", "0.0.0.0:8000"]
