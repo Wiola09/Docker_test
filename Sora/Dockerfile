@@ -6,7 +6,7 @@ FROM node:latest
 WORKDIR /app
 
 # Step 3: Clone the project repository
-RUN git clone git@github.com:SoraWebui/SoraWebui.git .
+RUN git clone https://github.com/SoraWebui/SoraWebui.git .
 
 # Step 4: Install dependencies using yarn (you can switch to npm or pnpm if preferred)
 RUN yarn
