@@ -17,4 +17,5 @@ RUN pip install autogenstudio
 EXPOSE 8081
 
 # Komanda za pokretanje AutoGen Studio UI
-CMD ["autogenstudio", "ui", "--port", "8081"]
+CMD ["autogenstudio", "ui", "--host", "0.0.0.0", "--port", "8081"]
+
