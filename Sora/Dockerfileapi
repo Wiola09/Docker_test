@@ -1,48 +1,17 @@
-# Use Node.js official image as the base image
-FROM node:latest
+# Use the official Node.js 16 image as a parent image
+FROM node:16
 
-# Set the working directory for SoraWebui
-WORKDIR /app/SoraWebui
-
-# Clone the SoraWebui repository
-RUN git clone https://github.com/SoraWebui/SoraWebui.git .
-
-# Install SoraWebui dependencies with yarn
-RUN yarn
-# Or use npm if you prefer
-# RUN npm install
-# Or use pnpm if you prefer
-# RUN pnpm install
-
-# Copy .env.example to .env.local and set up environment variables
-COPY .env.example .env.local
-# Here you should edit the .env.local file to insert the actual environment variables,
-# or you could use the ENV command to set environment variables.
-
-# Set the working directory for FakeSoraAPI
-WORKDIR /app/FakeSoraAPI
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
 # Clone the FakeSoraAPI repository
 RUN git clone https://github.com/SoraWebui/FakeSoraAPI.git .
 
-# Install FakeSoraAPI dependencies with yarn
+# Install any dependencies
 RUN yarn
-# Or use npm if you prefer
-# RUN npm install
-# Or use pnpm if you prefer
-# RUN pnpm install
 
-# Expose the ports that both applications use
-EXPOSE 3000
+# Expose the port the app runs on
 EXPOSE 8080
 
-# At this point, you'll need to decide how you want to run both applications.
-# You could use something like PM2 to run both simultaneously in the same container,
-# or you could create separate Dockerfiles for each and use Docker Compose to manage them together.
-
-# For example, using PM2 to run both applications:
-# Install PM2 globally
-RUN npm install pm2 -g
-
-# Start both applications with PM2
-CMD ["pm2-runtime", "start", "ecosystem.config.js"]
+# Command to run the app
+CMD ["yarn", "dev"]
