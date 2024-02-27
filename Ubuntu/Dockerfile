@@ -1,16 +1,22 @@
-# Koristimo zvaničnu sliku Ubuntu Jammy
+# Koristimo zvaničnu Ubuntu sliku kao osnovu
 FROM ubuntu:jammy-20240212
 
-# Opciono: Ažuriramo pakete i instaliramo bilo koji potreban softver
+# Postavljanje okruženja da koristi /bin/bash
+SHELL ["/bin/bash", "-c"]
+
+# Ažuriranje repozitorijuma i instalacija osnovnih alata
+# Instaliramo ca-certificates i bash za svaki slučaj
 RUN apt-get update && apt-get install -y \
-    software-properties-common \
+    ca-certificates \
+    bash \
     && rm -rf /var/lib/apt/lists/*
 
-# Opciono: Postavljamo radni direktorijum
+# Opciono: Postavite radni direktorijum unutar kontejnera
 WORKDIR /app
 
-# Opciono: Kopiramo lokalne fajlove u kontejner
+# Opciono: Kopiranje lokalnih fajlova u kontejner
 # COPY . /app
 
-# Komanda koja se izvršava kada se kontejner pokrene
+# Podrazumevana komanda koja se pokreće kada se kontejner pokrene
 CMD ["bash"]
+
