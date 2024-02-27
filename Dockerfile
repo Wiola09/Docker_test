@@ -1,6 +1,12 @@
 # Koristimo zvaničnu Python sliku koja već sadrži Python 3.10
 FROM python:3.10-slim
 
+# Instaliramo potrebne pakete za ps i netstat alate
+RUN apt-get update && apt-get install -y \
+    procps \
+    net-tools \
+    && rm -rf /var/lib/apt/lists/*
+
 # Postavljamo radni direktorijum unutar kontejnera
 WORKDIR /app
 
