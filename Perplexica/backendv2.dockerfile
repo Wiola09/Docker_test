@@ -1,3 +1,7 @@
+FROM node:alpine
+
+ARG SEARXNG_API_URL
+
 ARG API_KEY
 
 WORKDIR /home/perplexica
