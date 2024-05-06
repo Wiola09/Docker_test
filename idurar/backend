@@ -1,0 +1,43 @@
+# Koristite specifičnu verziju Node.js
+FROM node:20.9.0-alpine
+# Instalirajte git
+RUN apk add --no-cache git
+
+# Postavite radni direktorijum
+WORKDIR /usr/src/app
+
+# Definicija argumenata koji će se koristiti
+ARG NODE_ENV
+ARG DATABASE
+ARG PORT
+ARG NODE_OPTIONS
+ARG JWT_SECRET
+
+# Instalirajte specifičnu verziju npm globalno, ako je to neophodno
+RUN npm install -g npm@10.2.4
+
+# Klonirajte repozitorijum u privremeni direktorijum
+RUN git clone https://github.com/idurar/idurar-erp-crm.git /tmp/app
+
+# Premestite fajlove na pravo mesto
+RUN mv /tmp/app/backend/* ./
+
+# Instalirajte zavisnosti
+RUN npm install
+
+# Uklonite privremeni direktorijum, ako je više ne potreban
+RUN rm -rf /tmp/app
+
+# Podesite promenljive okruženja koristeći ARG vrednosti
+ENV NODE_ENV=$NODE_ENV
+ENV DATABASE=$DATABASE
+ENV PORT=$PORT
+ENV NODE_OPTIONS=$NODE_OPTIONS
+ENV JWT_SECRET=$JWT_SECRET
+
+# Izložite port na koji će aplikacija slušati
+EXPOSE $PORT
+
+# Pokrenite aplikaciju
+CMD ["npm", "run", "dev"]
+
