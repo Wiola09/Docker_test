@@ -8,7 +8,7 @@ WORKDIR /home/perplexica
 RUN apk update && apk add git
 
 
-RUN git clone https://github.com/ItzCrazyKns/Perplexica.git .
+RUN git clone https://github.com/Wiola09/Perplexica.git .
 RUN mv sample.config.toml config.toml
 
 #COPY src /home/perplexica/src
