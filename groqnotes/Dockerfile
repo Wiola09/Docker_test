@@ -23,7 +23,8 @@ WORKDIR /app/groqnotes
 
 # Postavljanje environment varijable za Groq API ključ
 # Zameniti 'your_api_key_here' sa stvarnim API ključem
-#ENV GROQ_API_KEY=test
+ENV GROQ_API_KEY=your_api_key_here
+
 # Kreiranje i aktivacija virtualnog okruženja, te instalacija zavisnosti
 RUN python3 -m venv venv && \
     . venv/bin/activate && \
