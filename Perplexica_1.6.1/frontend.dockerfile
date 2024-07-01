@@ -10,6 +10,9 @@ ENV OPENAI=${OPENAI}
 WORKDIR /home/perplexica
 RUN apk update && apk add git
 RUN git clone https://github.com/ItzCrazyKns/Perplexica.git .
+# Prebacivanje na određeni tag
+RUN git checkout tags/v1.7.0
+
 #RUN mv sample.config.toml config.toml
 WORKDIR ./ui
 
