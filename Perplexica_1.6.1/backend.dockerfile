@@ -8,7 +8,13 @@ WORKDIR /home/perplexica
 RUN apk update && apk add git
 
 
+# Kloniranje repozitorijuma
 RUN git clone https://github.com/ItzCrazyKns/Perplexica.git .
+
+# Prebacivanje na određeni tag
+WORKDIR Perplexica
+RUN git checkout tags/v1.7.0
+
 RUN mv sample.config.toml config.toml
 
 #COPY src /home/perplexica/src
