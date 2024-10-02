@@ -1,5 +1,5 @@
-# Koristimo zvaničnu Python sliku koja već sadrži Python 3.10
-FROM python:3.10-slim
+# Koristimo zvaničnu Python sliku koja već sadrži Python 3.12
+FROM python:3.12-slim
 
 # Instaliramo potrebne pakete za ps i netstat alate
 RUN apt-get update && apt-get install -y \
