@@ -5,8 +5,8 @@ ARG SEARXNG_API_URL
 ARG OPENAI_API_KEY
 
 WORKDIR /home/perplexica
-RUN apk update && apk add git
-
+# Ažuriraj apk i instaliraj git, python3, make i g++
+RUN apk update && apk add git python3 make g++
 
 # Kloniranje repozitorijuma
 RUN git clone --depth 1 --branch v1.9.1 https://github.com/ItzCrazyKns/Perplexica.git .
