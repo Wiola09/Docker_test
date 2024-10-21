@@ -23,7 +23,8 @@ RUN sed -i "s|SEARXNG = \".*\"|SEARXNG = \"${SEARXNG_API_URL}\"|g" /home/perplex
 RUN sed -i "s|OPENAI = \".*\"|OPENAI = \"${OPENAI_API_KEY}\"|g" /home/perplexica/config.toml
 
 
-RUN yarn install --frozen-lockfile --network-timeout 600000
+RUN yarn install --ignore-engines --network-timeout 1000000
+
 RUN yarn build
 
 CMD ["yarn", "start"]
