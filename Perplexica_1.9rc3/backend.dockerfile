@@ -9,7 +9,7 @@ RUN apk update && apk add git
 
 
 # Kloniranje repozitorijuma
-RUN git clone --depth 1 --branch v1.9.0-rc3 https://github.com/ItzCrazyKns/Perplexica.git .
+RUN git clone --depth 1 --branch v1.9.1 https://github.com/ItzCrazyKns/Perplexica.git .
 
 RUN mv sample.config.toml config.toml
 
