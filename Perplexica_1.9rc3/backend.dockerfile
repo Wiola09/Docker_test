@@ -6,7 +6,7 @@ ARG OPENAI_API_KEY
 
 WORKDIR /home/perplexica
 
-RUN apk update && apk add git
+RUN apt update && apt install -y git
 
 # Kloniranje repozitorijuma
 RUN git clone --depth 1 --branch v1.9.1 https://github.com/ItzCrazyKns/Perplexica.git .
