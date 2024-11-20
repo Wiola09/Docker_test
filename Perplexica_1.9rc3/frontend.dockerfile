@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:20.18.0-alpine
 
 ARG NEXT_PUBLIC_WS_URL
 ARG NEXT_PUBLIC_API_URL
