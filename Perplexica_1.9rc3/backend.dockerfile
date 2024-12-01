@@ -9,7 +9,7 @@ WORKDIR /home/perplexica
 RUN apt update && apt install -y git
 
 # Kloniranje repozitorijuma
-RUN git clone --depth 1 --branch v1.9.3 https://github.com/ItzCrazyKns/Perplexica.git .
+RUN git clone --depth 1 --branch v1.10.0-rc2 https://github.com/ItzCrazyKns/Perplexica.git .
 
 RUN mv sample.config.toml config.toml
 
