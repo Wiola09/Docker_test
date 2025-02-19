@@ -11,7 +11,7 @@ WORKDIR /home/perplexica
 RUN apk update && apk add git
 
 # Kloniranje repozitorijuma
-RUN git clone --depth 1 --branch v1.10.0-rc3 https://github.com/ItzCrazyKns/Perplexica.git .
+RUN git clone --depth 1 --branch v1.10.0-rc2 https://github.com/ItzCrazyKns/Perplexica.git .
 
 #RUN mv sample.config.toml config.toml
 WORKDIR ./ui
