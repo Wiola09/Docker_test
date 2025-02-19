@@ -20,7 +20,7 @@ RUN mv sample.config.toml config.toml
 #COPY yarn.lock /home/perplexica/
 
 RUN sed -i "s|SEARXNG = \".*\"|SEARXNG = \"${SEARXNG_API_URL}\"|g" /home/perplexica/config.toml
-RUN sed -i '/\[MODELS.OPENAI\]/,/^$/s|API_KEY = ".*"|API_KEY = "${OPENAI_API_KEY}"|' /home/perplexica/config.toml
+RUN sed -i '/\[MODELS.OPENAI\]/,/^$/s|API_KEY = ".*"|API_KEY = "'"${OPENAI_API_KEY}"'"|' /home/perplexica/config.toml
 
 
 RUN yarn install --frozen-lockfile --network-timeout 600000
